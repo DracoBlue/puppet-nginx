@@ -74,6 +74,12 @@ class nginx::package(
             before  => Anchor['nginx::package::end'],
           }
         }
+	'Gentoo': {
+          class { 'nginx::package::gentoo':
+            require => Anchor['nginx::package::begin'],
+            before  => Anchor['nginx::package::end'],
+          }
+        }
         default: {
           fail("Module ${module_name} is not supported on ${::operatingsystem}")
         }
